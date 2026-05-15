@@ -1,60 +1,60 @@
 <div align="center">
+
 <br/>
+
 <img src="./assets/banner.svg" width="100%" alt="MALAK — animated cinematic banner" />
+
 <br/>
 
 ### `M.A.L.A.K — Mentor for Adaptive Learning & Knowledge`
- 
+
 [![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://neon.tech)
 [![Pinecone](https://img.shields.io/badge/Pinecone-Vector_Memory-00C17C?style=for-the-badge)](https://pinecone.io)
 [![Groq](https://img.shields.io/badge/Groq-LLaMA_3.1-F55036?style=for-the-badge)](https://groq.com)
 [![License](https://img.shields.io/badge/License-MIT-00f3ff?style=for-the-badge)](LICENSE)
- 
+
 </div>
-<br/>
 
 <br/>
- 
+
+---
+
+<br/>
+
 It started in a terminal window.
-No UI. No database. No memory system. Just an API call fired into the void and something actually talking back.
+No UI. No database. No memory system. Just an API call fired into the void — and something actually talking back.
+
 <div align="center">
   <br/>
-  <img src="./assets/terminal.jpeg" width="100%" alt="MALAK — animated cinematic banner" />
+  <img src="./assets/terminal.jpeg" width="100%" alt="The first reply" />
   <br/>
 </div>
+
 <br/>
 
 What you're looking at now is everything built after that moment: persistent vector memory, autonomous daily emails, session intelligence, a 3-tier memory classifier, and a full glassmorphism UI — all grown from one terminal reply.
 
 ---
- 
+
 <br/>
- 
+
 <img src="./assets/demo-landing1.png" width="100%" />
 <img src="./assets/demo-landing2.png" width="100%" />
-<img src="./assets/demo-chat.png" width="100%" /> 
-</div>
+<img src="./assets/demo-chat.png" width="100%" />
+
 <br/>
+
 ---
+
 <br/>
 
 ## ◈ &nbsp; Demo
 
 <div align="center">
 
-[![Demo Video](https://img.shields.io/badge/▶_Watch_Demo-FF0000?style=for-the-badge&logo=youtube)](YOUR_VIDEO_LINK_HERE)
-
-<!-- 📸 SCREENSHOTS TO ADD (strongly recommended — drop into assets/ folder):
-     assets/demo-landing.png  →  Landing page · aurora gradient hero
-     assets/demo-chat.png     →  Active chat session · MALAK's response style
-     assets/demo-email.png    →  A received daily motivation email
-
-     Then uncomment and fill in the lines below:
-
-<img src="./assets/demo-landing.png" width="100%" />
-<img src="./assets/demo-chat.png" width="48%" /> &nbsp; <img src="./assets/demo-email.png" width="48%" />
--->
+**Demo video coming soon.**
+In the meantime, clone the repo, plug in your own API keys, and run it locally — setup takes under 3 minutes.
 
 </div>
 
@@ -109,8 +109,7 @@ malak-ai-mentor/
 │   └── chat.html            ←  Full chat UI · sidebar · live Markdown rendering
 │
 ├── 📁 assets/               ←  Banner, screenshots, demo media
-├── .env.example             ←  Template — fill in your keys, never commit .env
-├── .gitignore
+├── .env.example             ←  Template — fill in your keys
 └── package.json
 ```
 
@@ -122,7 +121,7 @@ Every message passes through this full pipeline before a single token is generat
 
 ```
 ┌─────────────────────────────────────────────────┐
-│                USER SENDS MESSAGE                │
+│                USER SENDS MESSAGE               │
 └───────────────────────┬─────────────────────────┘
                         │
             ┌───────────▼────────────┐
@@ -145,8 +144,8 @@ Every message passes through this full pipeline before a single token is generat
                                            ▼
                                  ┌──────────────────────┐
                                  │   Groq · LLaMA 3.1   │
-                                 │   8B Instant          │
-                                 │   SYSTEM_PROMPT       │
+                                 │   8B Instant         │
+                                 │   SYSTEM_PROMPT      │
                                  └──────────┬───────────┘
                                             │
                   ┌─────────────────────────┼──────────────────────┐
@@ -186,13 +185,16 @@ Every message is **semantically embedded** into a 384-dimensional vector using B
 
 Before embedding, every message is classified into one of three tiers:
 
-| Type | Examples | Injected into chat? | Used in daily email? |
-|------|----------|:-------------------:|:--------------------:|
-| `learning` | goals, skills, struggles, breakthroughs | ✅ | ✅ |
-| `identity` | job, location, student status | ✅ | ❌ |
-| `casual` | jokes, greetings, small talk | ❌ | ❌ |
+| Type | Examples | Stored in Pinecone? | Injected into chat? | Used in daily email? |
+|------|----------|:-------------------:|:-------------------:|:--------------------:|
+| `learning` | goals, skills, struggles, breakthroughs | ✅ | ✅ | ✅ |
+| `identity` | job, location, student status | ✅ | ✅ | ❌ |
+| `casual` | jokes, greetings, small talk | ✅ | ⚡ score-dependent | ❌ |
 
-Memory retrieval uses **cosine similarity with a 0.7 threshold** — so MALAK never hallucinates relevance or dumps unrelated context into replies. The embedder instance auto-recycles every 30 minutes to prevent staleness during long server uptime.
+> `casual` messages are stored and embedded like everything else. They are skipped from active injection — but if a casual message scores above the **0.7 cosine similarity threshold**, it can still surface as relevant context. Memory retrieval is semantic, not categorical.
+> But the classifier is used for the daily motivational mails, as they should be only learning oriented, and it shouldn't include random things the user sent like for example "jokes the user cracked"
+
+The embedder instance auto-recycles every 30 minutes to prevent staleness during long server uptime.
 
 <br/>
 
@@ -244,8 +246,6 @@ Every morning at 8 AM Cairo time, a cron job queries each user's recent sessions
 
 ## ◈ &nbsp; Tech Stack
 
-<br/>
-
 | Layer | Technology | Why |
 |-------|-----------|-----|
 | Runtime | Node.js 18+ (ESM) | Native `import/export`, modern JS |
@@ -266,8 +266,6 @@ Every morning at 8 AM Cairo time, a cron job queries each user's recent sessions
 <br/>
 
 ## ◈ &nbsp; Getting Started
-
-<br/>
 
 **Prerequisites:**
 - Node.js 18+
@@ -357,33 +355,6 @@ reply
 Hello! How can I help you today?
 ```
 
-<br/>
-
----
-
-<br/>
-
-## ◈ &nbsp; Roadmap
-
-```
-  ✅  Persistent vector memory across sessions
-  ✅  Autonomous daily motivation emails
-  ✅  AI-generated session titles + goal extraction
-  ✅  3-tier memory classification system
-  ✅  Embedder TTL recycling for long-running stability
-  ✅  PostgreSQL keep-alive for cloud connections
-  ✅  5-minute cron timeout guard
-
-  ◻   Streaming responses (SSE)
-  ◻   Mobile-responsive UI
-  ◻   User-configurable email schedule
-  ◻   Google OAuth
-  ◻   Export chat history as PDF
-  ◻   Docker + one-command deploy guide
-```
-
-<br/>
-
 ---
 
 <br/>
@@ -409,21 +380,14 @@ git push origin feature/your-idea
 
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  Built with intention · Cairo, Egypt · 2025
+  Built with intention · Cairo, Egypt · 2026
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-**Malak M. Salem**
+**Malak M. Salem**  
 Data Science · Cairo University
 
 *Started as a terminal command. Became a mentor.*
-
-<br/>
-
-[![GitHub](https://img.shields.io/badge/GitHub-your--username-181717?style=for-the-badge&logo=github)](https://github.com/your-username)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/your-profile)
-
-<br/>
 
 `MIT License · © Malak M. Salem`
 
