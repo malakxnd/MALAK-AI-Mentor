@@ -26,3 +26,19 @@ No UI. No database. No memory system. Just an API call fired into the void and s
 <br/>
 
 What you're looking at now is everything built after that moment: persistent vector memory, autonomous daily emails, session intelligence, a 3-tier memory classifier, and a full glassmorphism UI — all grown from one terminal reply.
+
+---
+ 
+<br/>
+## 'Demo'
+ 
+<div align="center">
+[![Demo Video](https://img.shields.io/badge/▶_Watch_Demo-FF0000?style=for-the-badge&logo=youtube)](YOUR_VIDEO_LINK_HERE)
+ 
+<img src="./assets/demo-landing1.png" width="100%" />
+<img src="./assets/demo-landing2.png" width="100%" />
+<img src="./assets/demo-chat.png" width="48%" /> &nbsp; <img src="./assets/demo-email.png" width="48%" />
+ 
+</div>
+<br/>
+---
